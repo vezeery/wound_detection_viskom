@@ -20,5 +20,7 @@ class WoundController extends Controller
         }
 
         return back()->with('error', 'Gagal upload gambar.');
+
+        return view('upload');
     }
 }

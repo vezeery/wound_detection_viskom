@@ -138,6 +138,12 @@
                 Upload wound image for AI classification
             </p>
 
+            @if (session('error'))
+                <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-2 rounded mb-4">
+                    {{ session('error') }}
+                </div>
+            @endif
+
             <form action="/predict" method="POST" enctype="multipart/form-data">
 
                 @csrf
