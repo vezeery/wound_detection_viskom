@@ -91,152 +91,274 @@
         </div>
     </nav>
 
-    <main class="max-w-7xl mx-auto px-12 mt-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-        <div>
-            <h2 class="text-6xl font-extrabold text-slate-900 leading-tight">
-                Deteksi Luka <br>
-                <span class="gradient-text">Cepat, Akurat, dan Terpercaya</span>
-            </h2>
-            <p class="text-gray-500 mt-6 text-lg max-w-lg">
-                WoundDetect menggunakan AI untuk membantu mendeteksi berbagai jenis luka pada kulit dengan cepat dan
-                akurat.
-            </p>
+    <main class="max-w-7xl mx-auto px-12 mt-10">
 
-            <button
-                class="mt-8 bg-indigo-600 text-white px-8 py-3 rounded-xl flex items-center gap-2 shadow-lg shadow-indigo-200 hover:scale-105 transition">
-                <i class="fas fa-upload"></i> Upload Gambar Luka
-            </button>
+        <!-- HERO SECTION -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
-            <div class="grid grid-cols-3 gap-8 mt-16">
-                <div class="space-y-3">
-                    <div
-                        class="w-12 h-12 bg-white rounded-xl shadow-sm border border-gray-100 flex items-center justify-center text-indigo-600">
-                        <i class="fas fa-bullseye text-xl"></i>
+            <!-- LEFT CONTENT -->
+            <div>
+                <h2 class="text-6xl font-extrabold text-slate-900 leading-tight">
+                    Deteksi Luka <br>
+                    <span class="gradient-text">Cepat, Akurat, dan Terpercaya</span>
+                </h2>
+
+                <p class="text-gray-500 mt-6 text-lg max-w-lg">
+                    WoundDetect membantu anda dalam membantu
+                    mendeteksi luka pada kulit anda dengan cepat dan
+                    tepat serta penanganan lebih lanjut.
+                </p>
+
+                <div class="grid grid-cols-3 gap-8 mt-16">
+                    <div class="space-y-3">
+                        <div
+                            class="w-12 h-12 bg-white rounded-xl shadow-sm border border-gray-100 flex items-center justify-center text-indigo-600">
+                            <i class="fas fa-bullseye text-xl"></i>
+                        </div>
+                        <h4 class="font-bold">Akurasi Tinggi</h4>
+                        <p class="text-xs text-gray-500">
+                            Model terlatih dengan dataset luka yang berkualitas.
+                        </p>
                     </div>
-                    <h4 class="font-bold">Akurasi Tinggi</h4>
-                    <p class="text-xs text-gray-500">Model AI terlatih dengan dataset medis berkualitas.</p>
-                </div>
-                <div class="space-y-3">
-                    <div
-                        class="w-12 h-12 bg-white rounded-xl shadow-sm border border-gray-100 flex items-center justify-center text-indigo-600">
-                        <i class="fas fa-shield-alt text-xl"></i>
+
+                    <div class="space-y-3">
+                        <div
+                            class="w-12 h-12 bg-white rounded-xl shadow-sm border border-gray-100 flex items-center justify-center text-indigo-600">
+                            <i class="fas fa-shield-alt text-xl"></i>
+                        </div>
+                        <h4 class="font-bold">Aman & Privasi</h4>
+                        <p class="text-xs text-gray-500">
+                            Gambar tidak disimpan, privasi Anda terlindungi.
+                        </p>
                     </div>
-                    <h4 class="font-bold">Aman & Privasi</h4>
-                    <p class="text-xs text-gray-500">Gambar tidak disimpan, privasi Anda terlindungi.</p>
-                </div>
-                <div class="space-y-3">
-                    <div
-                        class="w-12 h-12 bg-white rounded-xl shadow-sm border border-gray-100 flex items-center justify-center text-indigo-600">
-                        <i class="fas fa-bolt text-xl"></i>
+
+                    <div class="space-y-3">
+                        <div
+                            class="w-12 h-12 bg-white rounded-xl shadow-sm border border-gray-100 flex items-center justify-center text-indigo-600">
+                            <i class="fas fa-bolt text-xl"></i>
+                        </div>
+                        <h4 class="font-bold">Hasil Instan</h4>
+                        <p class="text-xs text-gray-500">
+                            Dapatkan hasil deteksi dalam hitungan detik.
+                        </p>
                     </div>
-                    <h4 class="font-bold">Hasil Instan</h4>
-                    <p class="text-xs text-gray-500">Dapatkan hasil deteksi dalam hitungan detik.</p>
                 </div>
             </div>
+
+            <!-- RIGHT IMAGE -->
+            <div class="flex justify-center">
+                <img src="{{ asset('images/Group.png') }}" alt="Medical Illustration" class="w-full max-w-2xl">
+            </div>
+
         </div>
 
-        <div class="bg-white p-8 rounded-[40px] shadow-2xl shadow-blue-100 border border-gray-50">
-            <h3 class="font-bold text-lg mb-1">Upload gambar luka Anda</h3>
-            <p class="text-sm text-gray-400 mb-6">Format: JPG, PNG (Max. 10MB)</p>
-            @if (session('error'))
-                <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-2 rounded mb-4">
-                    {{ session('error') }}
-                </div>
-            @endif
+        <!-- UPLOAD SECTION BELOW -->
+        <div class="mt-20 max-w-3xl mx-auto">
 
-            <form action="/welcome" method="POST" enctype="multipart/form-data" id="uploadForm">
-                @csrf
-                <label
-                    class="border-2 border-dashed border-gray-200 rounded-3xl p-10 flex flex-col items-center justify-center text-gray-400 mb-8 cursor-pointer hover:bg-gray-50 transition block">
-                    <i class="fas fa-cloud-upload-alt text-4xl text-indigo-400 mb-4"></i>
-                    <p>Klik untuk pilih gambar luka</p>
-                    <input type="file" name="image" id="imageInput" accept="image/*" capture="environment"
-                        class="hidden"required>
-                    <img id="preview" class="preview mt-4 w-32 h-32 object-cover rounded-lg hidden"
-                        alt="Preview Gambar Luka">
-                </label>
-                <button type="submit" class="btn">
-                    Predict Image
-                </button>
-            </form>
+            <div class="bg-white p-8 rounded-[40px] shadow-2xl shadow-blue-100 border border-gray-50">
 
-            <div class="bg-slate-50 rounded-3xl p-6 border border-gray-100">
+                <h3 class="font-bold text-lg mb-1">
+                    Upload gambar luka Anda
+                </h3>
 
-                @if (isset($result) && isset($imagePath))
-                    <h4 class="font-bold text-sm mb-4">
-                        Hasil Deteksi AI
-                    </h4>
+                <p class="text-sm text-gray-400 mb-6">
+                    Format: JPG, PNG (Max. 10MB)
+                </p>
 
-                    <img src="{{ asset('storage/' . $imagePath) }}" alt="Uploaded Image"
-                        class="w-full rounded-2xl object-cover mb-4">
-
-                    <div class="result-item">
-                        Detected Class:
+                @if (session('error'))
+                    <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-2 rounded mb-4">
+                        {{ session('error') }}
                     </div>
+                @endif
 
-                    <span class="badge">
-                        {{ $result['class'] }}
-                    </span>
+                <form action="/welcome" method="POST" enctype="multipart/form-data" id="uploadForm">
+                    @csrf
 
-                    <div class="result-item mt-4">
-                        Confidence:
-                        <strong>
-                            {{ round($result['confidence'] * 100, 2) }}%
-                        </strong>
-                    </div>
+                    <label
+                        class="border-2 border-dashed border-gray-200 rounded-3xl p-10 flex flex-col items-center justify-center text-gray-400 mb-8 cursor-pointer hover:bg-gray-50 transition block">
 
-            </div>
-        @else
-            <h4 class="font-bold text-sm mb-4">
-                Contoh Hasil Deteksi
-            </h4>
+                        <i class="fas fa-cloud-upload-alt text-4xl text-indigo-400 mb-4"></i>
 
-            <div class="flex gap-4">
+                        <p>Klik untuk pilih gambar luka</p>
 
-                <img src="{{ asset('images/example.png') }}" class="w-32 h-32 rounded-2xl object-cover"
-                    alt="Wound Example">
+                        <input type="file" name="image" id="imageInput" accept="image/*" capture="environment"
+                            class="hidden" required>
 
-                <div class="flex-1">
+                        <img id="preview" class="preview mt-4 w-40 h-40 object-cover rounded-xl hidden"
+                            alt="Preview Gambar Luka">
 
-                    <div class="flex justify-between items-start mb-2">
+                    </label>
 
-                        <div>
-                            <p class="text-xs text-gray-400">
-                                Jenis Luka
-                            </p>
+                    <button type="submit" class="btn w-full">
+                        Predict Image
+                    </button>
+                </form>
 
-                            <h5 class="text-indigo-700 font-bold text-xl">
-                                Abrasions
-                            </h5>
+                @php
+                    $recommendations = [
+                        'Abrasions' => [
+                            'title' => 'Rekomendasi Penanganan',
+                            'steps' => [
+                                'Bersihkan luka dengan air mengalir.',
+                                'Gunakan antiseptik untuk mencegah infeksi.',
+                                'Tutup luka menggunakan kasa steril.',
+                                'Hindari menggaruk area luka.',
+                                'Segera ke dokter jika luka memburuk atau terinfeksi.',
+                            ],
+                        ],
+
+                        'Bruises' => [
+                            'title' => 'Rekomendasi Penanganan',
+                            'steps' => [
+                                'Kompres dingin selama 15-20 menit.',
+                                'Istirahatkan area yang memar.',
+                                'Hindari tekanan berlebih pada luka.',
+                                'Periksa ke dokter jika membengkak parah.',
+                            ],
+                        ],
+
+                        'Burns' => [
+                            'title' => 'Rekomendasi Penanganan',
+                            'steps' => [
+                                'Dinginkan luka dengan air mengalir.',
+                                'Jangan pecahkan lepuhan.',
+                                'Gunakan salep luka bakar.',
+                                'Segera ke dokter jika luka berat.',
+                            ],
+                        ],
+
+                        'Cut' => [
+                            'title' => 'Rekomendasi Penanganan',
+                            'steps' => [
+                                'Hentikan pendarahan dengan menekan luka.',
+                                'Bersihkan luka sebelum dibalut.',
+                                'Gunakan perban steril.',
+                                'Periksa jika luka terlalu dalam.',
+                                'Segera ke dokter jika luka tidak berhenti berdarah.',
+                            ],
+                        ],
+
+                        'Pressure Wounds' => [
+                            'title' => 'Rekomendasi Penanganan',
+                            'steps' => [
+                                'Rubah posisi secara berkala.',
+                                'Gunakan bantalan untuk mengurangi tekanan.',
+                                'Jaga kebersihan area luka.',
+                                'Konsultasikan dengan tenaga medis.',
+                            ],
+                        ],
+                    ];
+                @endphp
+
+                <div class="bg-slate-50 rounded-3xl p-6 border border-gray-100 mt-8">
+
+                    @if (isset($result) && isset($imagePath))
+
+                        <h4 class="font-bold text-sm mb-4">
+                            Hasil Deteksi
+                        </h4>
+
+                        <img src="{{ asset('storage/' . $imagePath) }}" alt="Uploaded Image"
+                            class="w-full max-h-[400px] rounded-2xl object-cover mb-4">
+
+                        <div class="result-item">
+                            Detected Class:
                         </div>
 
-                        <span class="bg-green-100 text-green-600 text-[10px] font-bold px-2 py-1 rounded-md">
-                            92%
+                        <span class="badge">
+                            {{ $result['class'] }}
                         </span>
 
-                    </div>
+                        <div class="result-item mt-4">
+                            Confidence:
+                            <strong>
+                                {{ round($result['confidence'] * 100, 2) }}%
+                            </strong>
+                        </div>
 
-                    <p class="text-xs text-gray-600 mb-4">
-                        Luka gesek pada permukaan kulit akibat benda kasar.
-                    </p>
+                        {{-- RECOMMENDATION --}}
+                        @if (isset($recommendations[$result['class']]))
+
+                            <div class="mt-6 bg-blue-50 border border-blue-100 rounded-2xl p-5">
+
+                                <h5 class="font-bold text-indigo-700 mb-3">
+                                    {{ $recommendations[$result['class']]['title'] }}
+                                </h5>
+
+                                <ul class="space-y-2">
+
+                                    @foreach ($recommendations[$result['class']]['steps'] as $step)
+                                        <li class="flex items-start gap-2 text-sm text-gray-700">
+                                            <i class="fas fa-check-circle text-indigo-500 mt-1"></i>
+                                            <span>{{ $step }}</span>
+                                        </li>
+                                    @endforeach
+
+                                </ul>
+
+                            </div>
+
+                        @endif
+                    @else
+                        <h4 class="font-bold text-sm mb-4">
+                            Contoh Hasil Deteksi
+                        </h4>
+
+                        <div class="flex gap-4">
+
+                            <img src="{{ asset('images/example.png') }}" class="w-32 h-32 rounded-2xl object-cover"
+                                alt="Wound Example">
+
+                            <div class="flex-1">
+
+                                <div class="flex justify-between items-start mb-2">
+
+                                    <div>
+                                        <p class="text-xs text-gray-400">
+                                            Jenis Luka
+                                        </p>
+
+                                        <h5 class="text-indigo-700 font-bold text-xl">
+                                            Abrasions
+                                        </h5>
+                                    </div>
+
+                                    <span
+                                        class="bg-green-100 text-green-600 text-[10px] font-bold px-2 py-1 rounded-md">
+                                        92%
+                                    </span>
+
+                                </div>
+
+                                <p class="text-xs text-gray-600 mb-4">
+                                    Luka gesek pada permukaan kulit akibat benda kasar.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    @endif
 
                 </div>
 
             </div>
-            @endif
 
         </div>
-        </div>
+
     </main>
 
     <div
         class="max-w-4xl mx-auto mt-12 bg-indigo-50/50 border border-indigo-100 rounded-full py-3 flex items-center justify-center gap-3 text-indigo-600 text-sm">
         <i class="fas fa-check-circle"></i>
-        <span>Didukung oleh teknologi AI • Cepat • Akurat • Terpercaya</span>
-    </div>
+        <span>Cepat • Akurat • Terpercaya</span>
 
+    </div>
+    <p class="text-center text-gray-500 text-sm mt-4">
+        Aplikasi ini hanya untuk penanganan pertama, bila sakit berlanjut hubungi dokter
+    </p>
     <footer class="text-center py-10 text-gray-400 text-xs">
-        © 2024 WoundDetect. Semua hak dilindungi.
+        © 2026 WoundDetection
     </footer>
     <script>
         const imageInput = document.getElementById('imageInput');
